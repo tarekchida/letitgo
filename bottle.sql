@@ -11,78 +11,78 @@ CREATE TABLE `Users` (
   `Avatar`             varchar(255) NOT NULL, 
   `CitiesID`           int(10) NOT NULL, 
   `CountriesID`        int(10) NOT NULL, 
-  PRIMARY KEY (`ID`)) type=InnoDB CHARACTER SET UTF8;
+  PRIMARY KEY (`ID`)) ;
 CREATE TABLE `Languages` (
   `ID`   int(10) NOT NULL AUTO_INCREMENT, 
   `Name` int(10) NOT NULL, 
   PRIMARY KEY (`ID`), 
-  INDEX (`Name`)) type=InnoDB CHARACTER SET UTF8;
+  INDEX (`Name`)) ;
 CREATE TABLE `Messages` (
   `ID`            int(10) NOT NULL AUTO_INCREMENT, 
   `MessageTypeID` int(10) NOT NULL, 
   `UsersID`       int(10) NOT NULL, 
   `ChainId`       varchar(255) NOT NULL, 
   `Date`          datetime NOT NULL, 
-  PRIMARY KEY (`ID`)) type=InnoDB CHARACTER SET UTF8;
+  PRIMARY KEY (`ID`)) ;
 CREATE TABLE `UsedLanguages` (
   `UsersID`     int(10) NOT NULL, 
   `LanguagesID` int(10) NOT NULL, 
   `Date`        datetime NOT NULL, 
   PRIMARY KEY (`UsersID`, 
-  `LanguagesID`)) type=InnoDB CHARACTER SET UTF8;
+  `LanguagesID`)) ;
 CREATE TABLE `wantedLanguages` (
   `UsersID`     int(10) NOT NULL, 
   `LanguagesID` int(10) NOT NULL, 
   `Date`        datetime NOT NULL, 
   PRIMARY KEY (`UsersID`, 
-  `LanguagesID`)) type=InnoDB CHARACTER SET UTF8;
+  `LanguagesID`)) ;
 CREATE TABLE `Dislikes` (
   `MessagesID` int(10) NOT NULL, 
   `UsersID`    int(10) NOT NULL, 
   `Date`       datetime NOT NULL, 
   PRIMARY KEY (`MessagesID`, 
-  `UsersID`)) type=InnoDB CHARACTER SET UTF8;
+  `UsersID`)) ;
 CREATE TABLE `likes` (
   `MessagesID` int(10) NOT NULL, 
   `UsersID`    int(10) NOT NULL, 
   `Date`       datetime NOT NULL, 
   PRIMARY KEY (`MessagesID`, 
-  `UsersID`)) type=InnoDB CHARACTER SET UTF8;
+  `UsersID`)) ;
 CREATE TABLE `Bookmarks` (
   `MessagesID` int(10) NOT NULL, 
   `UsersID`    int(10) NOT NULL, 
   `Date`       datetime NOT NULL, 
   PRIMARY KEY (`MessagesID`, 
-  `UsersID`)) type=InnoDB CHARACTER SET UTF8;
+  `UsersID`)) ;
 CREATE TABLE `Reporting` (
   `MessagesID` int(10) NOT NULL, 
   `UsersID`    int(10) NOT NULL, 
   `Date`       datetime NOT NULL, 
   PRIMARY KEY (`MessagesID`, 
-  `UsersID`)) type=InnoDB CHARACTER SET UTF8;
+  `UsersID`)) ;
 CREATE TABLE `Viewed` (
   `MessagesID` int(10) NOT NULL, 
   `UsersID`    int(10) NOT NULL, 
   `Date`       datetime NOT NULL, 
   PRIMARY KEY (`MessagesID`, 
-  `UsersID`)) type=InnoDB CHARACTER SET UTF8;
+  `UsersID`)) ;
 CREATE TABLE `Countries` (
   `ID`   int(10) NOT NULL AUTO_INCREMENT, 
   `Name` int(10) NOT NULL, 
   `Code` int(10) NOT NULL, 
   PRIMARY KEY (`ID`), 
-  INDEX (`Name`)) type=InnoDB CHARACTER SET UTF8;
+  INDEX (`Name`)) ;
 CREATE TABLE `Cities` (
   `ID`          int(10) NOT NULL AUTO_INCREMENT, 
   `Name`        int(10) NOT NULL, 
   `CountriesID` int(10) NOT NULL, 
   `Code`        int(10) NOT NULL, 
   PRIMARY KEY (`ID`), 
-  INDEX (`Name`)) type=InnoDB CHARACTER SET UTF8;
+  INDEX (`Name`)) ;
 CREATE TABLE `MessageType` (
   `ID`       int(10) NOT NULL AUTO_INCREMENT, 
   `TypeName` int(10), 
-  PRIMARY KEY (`ID`)) type=InnoDB CHARACTER SET UTF8;
+  PRIMARY KEY (`ID`)) ;
 ALTER TABLE `UsedLanguages` ADD INDEX `FKUsedLangua112238` (`UsersID`), ADD CONSTRAINT `FKUsedLangua112238` FOREIGN KEY (`UsersID`) REFERENCES `Users` (`ID`);
 ALTER TABLE `UsedLanguages` ADD INDEX `FKUsedLangua85892` (`LanguagesID`), ADD CONSTRAINT `FKUsedLangua85892` FOREIGN KEY (`LanguagesID`) REFERENCES `Languages` (`ID`);
 ALTER TABLE `wantedLanguages` ADD INDEX `UserLanguages` (`UsersID`), ADD CONSTRAINT `UserLanguages` FOREIGN KEY (`UsersID`) REFERENCES `Users` (`ID`);
