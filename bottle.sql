@@ -30,19 +30,19 @@ CREATE TABLE `UsedLanguages` (
   `Date`        datetime NOT NULL, 
   PRIMARY KEY (`UsersID`, 
   `LanguagesID`)) ;
-CREATE TABLE `wantedLanguages` (
+CREATE TABLE `WantedLanguages` (
   `UsersID`     int(10) NOT NULL, 
   `LanguagesID` int(10) NOT NULL, 
   `Date`        datetime NOT NULL, 
   PRIMARY KEY (`UsersID`, 
   `LanguagesID`)) ;
-CREATE TABLE `Dislikes` (
+CREATE TABLE `DisLikes` (
   `MessagesID` int(10) NOT NULL, 
   `UsersID`    int(10) NOT NULL, 
   `Date`       datetime NOT NULL, 
   PRIMARY KEY (`MessagesID`, 
   `UsersID`)) ;
-CREATE TABLE `likes` (
+CREATE TABLE `Likes` (
   `MessagesID` int(10) NOT NULL, 
   `UsersID`    int(10) NOT NULL, 
   `Date`       datetime NOT NULL, 
@@ -85,13 +85,13 @@ CREATE TABLE `MessageType` (
   PRIMARY KEY (`ID`)) ;
 ALTER TABLE `UsedLanguages` ADD INDEX `FKUsedLangua112238` (`UsersID`), ADD CONSTRAINT `FKUsedLangua112238` FOREIGN KEY (`UsersID`) REFERENCES `Users` (`ID`);
 ALTER TABLE `UsedLanguages` ADD INDEX `FKUsedLangua85892` (`LanguagesID`), ADD CONSTRAINT `FKUsedLangua85892` FOREIGN KEY (`LanguagesID`) REFERENCES `Languages` (`ID`);
-ALTER TABLE `wantedLanguages` ADD INDEX `UserLanguages` (`UsersID`), ADD CONSTRAINT `UserLanguages` FOREIGN KEY (`UsersID`) REFERENCES `Users` (`ID`);
-ALTER TABLE `wantedLanguages` ADD INDEX `FKwantedLang318904` (`LanguagesID`), ADD CONSTRAINT `FKwantedLang318904` FOREIGN KEY (`LanguagesID`) REFERENCES `Languages` (`ID`);
+ALTER TABLE `WantedLanguages` ADD INDEX `UserLanguages` (`UsersID`), ADD CONSTRAINT `UserLanguages` FOREIGN KEY (`UsersID`) REFERENCES `Users` (`ID`);
+ALTER TABLE `WantedLanguages` ADD INDEX `FKwantedLang318904` (`LanguagesID`), ADD CONSTRAINT `FKwantedLang318904` FOREIGN KEY (`LanguagesID`) REFERENCES `Languages` (`ID`);
 ALTER TABLE `Messages` ADD INDEX `FKMessages118180` (`UsersID`), ADD CONSTRAINT `FKMessages118180` FOREIGN KEY (`UsersID`) REFERENCES `Users` (`ID`);
-ALTER TABLE `Dislikes` ADD INDEX `Dislikes` (`MessagesID`), ADD CONSTRAINT `Dislikes` FOREIGN KEY (`MessagesID`) REFERENCES `Messages` (`ID`);
-ALTER TABLE `Dislikes` ADD INDEX `FKDislikes520045` (`UsersID`), ADD CONSTRAINT `FKDislikes520045` FOREIGN KEY (`UsersID`) REFERENCES `Users` (`ID`);
-ALTER TABLE `likes` ADD INDEX `Likes` (`MessagesID`), ADD CONSTRAINT `Likes` FOREIGN KEY (`MessagesID`) REFERENCES `Messages` (`ID`);
-ALTER TABLE `likes` ADD INDEX `FKlikes542952` (`UsersID`), ADD CONSTRAINT `FKlikes542952` FOREIGN KEY (`UsersID`) REFERENCES `Users` (`ID`);
+ALTER TABLE `DisLikes` ADD INDEX `DisLikes` (`MessagesID`), ADD CONSTRAINT `DisLikes` FOREIGN KEY (`MessagesID`) REFERENCES `Messages` (`ID`);
+ALTER TABLE `DisLikes` ADD INDEX `FKDisLikes520045` (`UsersID`), ADD CONSTRAINT `FKDisLikes520045` FOREIGN KEY (`UsersID`) REFERENCES `Users` (`ID`);
+ALTER TABLE `Likes` ADD INDEX `Likes` (`MessagesID`), ADD CONSTRAINT `Likes` FOREIGN KEY (`MessagesID`) REFERENCES `Messages` (`ID`);
+ALTER TABLE `Likes` ADD INDEX `FKLikes542952` (`UsersID`), ADD CONSTRAINT `FKLikes542952` FOREIGN KEY (`UsersID`) REFERENCES `Users` (`ID`);
 ALTER TABLE `Bookmarks` ADD INDEX `Bookmarks` (`MessagesID`), ADD CONSTRAINT `Bookmarks` FOREIGN KEY (`MessagesID`) REFERENCES `Messages` (`ID`);
 ALTER TABLE `Bookmarks` ADD INDEX `FKBookmarks755940` (`UsersID`), ADD CONSTRAINT `FKBookmarks755940` FOREIGN KEY (`UsersID`) REFERENCES `Users` (`ID`);
 ALTER TABLE `Reporting` ADD INDEX `Reporting` (`MessagesID`), ADD CONSTRAINT `Reporting` FOREIGN KEY (`MessagesID`) REFERENCES `Messages` (`ID`);
