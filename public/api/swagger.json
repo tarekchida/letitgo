@@ -1,0 +1,497 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "ThrowIt Api",
+    "version" : "1.0.0",
+    "title" : "throwIt"
+  },
+  "host" : "th.dev",
+  "basePath" : "/",
+  "tags" : [ {
+    "name" : "Registration",
+    "description" : "Manage user registration"
+  }, {
+    "name" : "countries and cities",
+    "description" : "Get countries and cities lists"
+  } ],
+  "schemes" : [ "https", "http" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/first-step" : {
+      "post" : {
+        "tags" : [ "Registration" ],
+        "summary" : "User first step",
+        "description" : "User first step",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "email",
+          "description" : "User email",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/firstStepRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "User created",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "401" : {
+            "description" : "User already exists"
+          }
+        }
+      }
+    },
+    "/registration" : {
+      "post" : {
+        "tags" : [ "Registration" ],
+        "summary" : "User registration",
+        "description" : "User registration",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "user",
+          "description" : "User informations",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/userRegister"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "User created",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_1"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        }
+      }
+    },
+    "/countries" : {
+      "get" : {
+        "tags" : [ "countries and cities" ],
+        "summary" : "Get countries list",
+        "description" : "Get countries list",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Countries list",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_2"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
+          }
+        }
+      }
+    },
+    "/countries/{id}" : {
+      "get" : {
+        "tags" : [ "countries and cities" ],
+        "summary" : "Get states list by country id",
+        "description" : "Get states list by country id",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Country id",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "States list",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_3"
+            }
+          },
+          "400" : {
+            "description" : "Country not found"
+          }
+        }
+      }
+    },
+    "/states/{id}" : {
+      "get" : {
+        "tags" : [ "countries and cities" ],
+        "summary" : "Get cities list by state id",
+        "description" : "Get cities list by state id",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Country id",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Cities list",
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200_4"
+            }
+          },
+          "400" : {
+            "description" : "Country not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "firstStepRequest" : {
+      "type" : "object",
+      "properties" : {
+        "email" : {
+          "type" : "string",
+          "description" : "User email"
+        }
+      }
+    },
+    "firstStepResponse" : {
+      "type" : "object",
+      "properties" : {
+        "email" : {
+          "type" : "string",
+          "description" : "User email"
+        },
+        "id" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "User id"
+        }
+      },
+      "example" : {
+        "id" : 0,
+        "email" : "email"
+      }
+    },
+    "userRegister" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "userName" : {
+          "type" : "string"
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        },
+        "birthDate" : {
+          "type" : "string",
+          "format" : "datetime"
+        },
+        "city" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "avatar" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "user" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "userName" : {
+          "type" : "string"
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        },
+        "birthDate" : {
+          "type" : "string",
+          "format" : "datetime"
+        },
+        "country" : {
+          "type" : "string"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "avatar" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "firstName" : "firstName",
+        "lastName" : "lastName",
+        "country" : "country",
+        "password" : "password",
+        "city" : "city",
+        "id" : 0,
+        "avatar" : "avatar",
+        "userName" : "userName",
+        "birthDate" : "birthDate",
+        "email" : "email"
+      }
+    },
+    "statesByCountryId" : {
+      "type" : "object",
+      "properties" : {
+        "ID" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "cities" : {
+          "$ref" : "#/definitions/statesByCountryId_cities"
+        }
+      },
+      "example" : {
+        "cities" : {
+          "data" : [ {
+            "ID" : 6,
+            "Name" : "Name"
+          }, {
+            "ID" : 6,
+            "Name" : "Name"
+          } ]
+        },
+        "ID" : 0
+      }
+    },
+    "citiesByStateId" : {
+      "type" : "object",
+      "properties" : {
+        "ID" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "cities" : {
+          "$ref" : "#/definitions/citiesByStateId_cities"
+        }
+      },
+      "example" : {
+        "cities" : {
+          "data" : [ {
+            "ID" : 6,
+            "Name" : "Name"
+          }, {
+            "ID" : 6,
+            "Name" : "Name"
+          } ]
+        },
+        "ID" : 0
+      }
+    },
+    "countries" : {
+      "type" : "object",
+      "properties" : {
+        "ID" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Name" : {
+          "type" : "string"
+        },
+        "Code" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "ID" : 0,
+        "Code" : "Code",
+        "Name" : "Name"
+      }
+    },
+    "states" : {
+      "type" : "object",
+      "properties" : {
+        "ID" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Name" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "ID" : 6,
+        "Name" : "Name"
+      }
+    },
+    "cities" : {
+      "type" : "object",
+      "properties" : {
+        "ID" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "Name" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "ID" : 6,
+        "Name" : "Name"
+      }
+    },
+    "inline_response_200" : {
+      "properties" : {
+        "data" : {
+          "$ref" : "#/definitions/firstStepResponse"
+        }
+      },
+      "example" : {
+        "data" : {
+          "id" : 0,
+          "email" : "email"
+        }
+      }
+    },
+    "inline_response_200_1" : {
+      "properties" : {
+        "data" : {
+          "$ref" : "#/definitions/user"
+        }
+      },
+      "example" : {
+        "data" : {
+          "firstName" : "firstName",
+          "lastName" : "lastName",
+          "country" : "country",
+          "password" : "password",
+          "city" : "city",
+          "id" : 0,
+          "avatar" : "avatar",
+          "userName" : "userName",
+          "birthDate" : "birthDate",
+          "email" : "email"
+        }
+      }
+    },
+    "inline_response_200_2" : {
+      "properties" : {
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/countries"
+          }
+        }
+      },
+      "example" : {
+        "data" : [ {
+          "ID" : 0,
+          "Code" : "Code",
+          "Name" : "Name"
+        }, {
+          "ID" : 0,
+          "Code" : "Code",
+          "Name" : "Name"
+        } ]
+      }
+    },
+    "inline_response_200_3" : {
+      "properties" : {
+        "data" : {
+          "$ref" : "#/definitions/statesByCountryId"
+        }
+      },
+      "example" : {
+        "data" : {
+          "cities" : {
+            "data" : [ {
+              "ID" : 6,
+              "Name" : "Name"
+            }, {
+              "ID" : 6,
+              "Name" : "Name"
+            } ]
+          },
+          "ID" : 0
+        }
+      }
+    },
+    "inline_response_200_4" : {
+      "properties" : {
+        "data" : {
+          "$ref" : "#/definitions/citiesByStateId"
+        }
+      },
+      "example" : {
+        "data" : {
+          "cities" : {
+            "data" : [ {
+              "ID" : 6,
+              "Name" : "Name"
+            }, {
+              "ID" : 6,
+              "Name" : "Name"
+            } ]
+          },
+          "ID" : 0
+        }
+      }
+    },
+    "statesByCountryId_cities" : {
+      "properties" : {
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/states"
+          }
+        }
+      },
+      "example" : {
+        "data" : [ {
+          "ID" : 6,
+          "Name" : "Name"
+        }, {
+          "ID" : 6,
+          "Name" : "Name"
+        } ]
+      }
+    },
+    "citiesByStateId_cities" : {
+      "properties" : {
+        "data" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/cities"
+          }
+        }
+      },
+      "example" : {
+        "data" : [ {
+          "ID" : 6,
+          "Name" : "Name"
+        }, {
+          "ID" : 6,
+          "Name" : "Name"
+        } ]
+      }
+    }
+  }
+}
