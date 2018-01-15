@@ -11,8 +11,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Countries;
 use App\States;
+use Auth;
 
 class CountriesAndCitiesApi extends Controller {
+
+    public function __construct() {
+        $this->middleware('auth');
+    }
 
     /**
      * Operation countriesGet

@@ -1,9 +1,5 @@
 <?php
 
-namespace App;
-
-use Illuminate\Database\Eloquent\Model;
-
 /**
  * @property int $ID
  * @property string $FirstName
@@ -28,7 +24,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property Viewed[] $vieweds
  * @property WantedLanguage[] $wantedLanguages
  */
-class Users extends Model {
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
+
+class Users extends Model implements Authenticatable {
+
+    use AuthenticableTrait;
 
     /**
      * The table associated with the model.
@@ -47,7 +52,8 @@ class Users extends Model {
     /**
      * @var array
      */
-    protected $fillable = ['FirstName', 'LastName', 'Email', 'UserName', 'Password', 'BirthDate', 'LastConnectionDate', 'CreationDate', 'Avatar', 'CitiesID', 'CountriesID'];
+    protected $fillable = ['FirstName', 'LastName', 'Email', 'UserName', 'Password', 'BirthDate', 'LastConnectionDate', 'CreationDate', 'Avatar', 'CitiesID', 'CountriesID', 'apiKey'];
+    protected $hidden = [ 'Password'];
 
     /**
      *
