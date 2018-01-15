@@ -11,8 +11,8 @@
     "name" : "Registration",
     "description" : "Manage user registration"
   }, {
-    "name" : "countries and cities",
-    "description" : "Get countries and cities lists"
+    "name" : "countries, states & cities",
+    "description" : "Get countries, states and cities lists"
   } ],
   "schemes" : [ "https", "http" ],
   "consumes" : [ "application/json" ],
@@ -77,7 +77,7 @@
     },
     "/countries" : {
       "get" : {
-        "tags" : [ "countries and cities" ],
+        "tags" : [ "countries, states & cities" ],
         "summary" : "Get countries list",
         "description" : "Get countries list",
         "parameters" : [ ],
@@ -96,7 +96,7 @@
     },
     "/countries/{id}" : {
       "get" : {
-        "tags" : [ "countries and cities" ],
+        "tags" : [ "countries, states & cities" ],
         "summary" : "Get states list by country id",
         "description" : "Get states list by country id",
         "parameters" : [ {
@@ -121,13 +121,13 @@
     },
     "/states/{id}" : {
       "get" : {
-        "tags" : [ "countries and cities" ],
+        "tags" : [ "countries, states & cities" ],
         "summary" : "Get cities list by state id",
         "description" : "Get cities list by state id",
         "parameters" : [ {
           "name" : "id",
           "in" : "path",
-          "description" : "Country id",
+          "description" : "State id",
           "required" : true,
           "type" : "integer"
         } ],
@@ -265,12 +265,13 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "cities" : {
-          "$ref" : "#/definitions/statesByCountryId_cities"
+        "states" : {
+          "$ref" : "#/definitions/statesByCountryId_states"
         }
       },
       "example" : {
-        "cities" : {
+        "ID" : 0,
+        "states" : {
           "data" : [ {
             "ID" : 6,
             "Name" : "Name"
@@ -278,8 +279,7 @@
             "ID" : 6,
             "Name" : "Name"
           } ]
-        },
-        "ID" : 0
+        }
       }
     },
     "citiesByStateId" : {
@@ -421,7 +421,8 @@
       },
       "example" : {
         "data" : {
-          "cities" : {
+          "ID" : 0,
+          "states" : {
             "data" : [ {
               "ID" : 6,
               "Name" : "Name"
@@ -429,8 +430,7 @@
               "ID" : 6,
               "Name" : "Name"
             } ]
-          },
-          "ID" : 0
+          }
         }
       }
     },
@@ -455,7 +455,7 @@
         }
       }
     },
-    "statesByCountryId_cities" : {
+    "statesByCountryId_states" : {
       "properties" : {
         "data" : {
           "type" : "array",

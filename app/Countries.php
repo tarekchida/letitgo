@@ -37,7 +37,7 @@ class Countries extends Model
      */
     public function states()
     {
-        return $this->hasMany('App\States', 'StatesID', 'ID');
+        return $this->hasMany('App\States', 'CountriesID', 'ID');
     }
 
     /**
