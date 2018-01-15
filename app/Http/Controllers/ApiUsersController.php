@@ -35,11 +35,10 @@ class ApiUsersController extends Controller {
 
             $apikey = base64_encode(str_random(40));
 
-            Users::where('Email', $request->input('email'))->update(['api_key' => $apikey]);
+            Users::where('Email', $request->input('email'))->update(['api_key' => $apikey, 'LastConnectionDate' => now()]);
 
             return response()->json(['status' => 'success', 'api_key' => $apikey]);
         } else {
-
             return response('Authetification Fail', API_UNAUTHORIZED);
         }
     }
