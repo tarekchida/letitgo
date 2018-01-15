@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $MessagesID
  * @property int $UsersID
  * @property string $Date
- * @property User $user
- * @property Message $message
+ * @property User $users
+ * @property Message $messages
  */
 class Viewed extends Model
 {
@@ -28,7 +28,7 @@ class Viewed extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function users()
     {
         return $this->belongsTo('App\Users', 'UsersID', 'ID');
     }
@@ -36,7 +36,7 @@ class Viewed extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function message()
+    public function messages()
     {
         return $this->belongsTo('App\Messages', 'MessagesID', 'ID');
     }
