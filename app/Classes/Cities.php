@@ -21,15 +21,15 @@ class Cities {
     /**
      * @AttributeType int
      */
-    private $code;
+    private $StatesID;
 
     /**
      * @access public
      */
-    function __construct($iD, $name, $code) {
+    function __construct($iD, $name, $StatesID) {
         $this->iD = $iD;
         $this->name = $name;
-        $this->code = $code;
+        $this->StatesID = $StatesID;
     }
 
     function getID() {
@@ -40,8 +40,8 @@ class Cities {
         return $this->name;
     }
 
-    function getCode() {
-        return $this->code;
+    function getStatesID() {
+        return $this->StatesID;
     }
 
 }

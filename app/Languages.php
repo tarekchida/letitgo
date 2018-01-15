@@ -36,7 +36,7 @@ class Languages extends Model
      */
     public function usedLanguages()
     {
-        return $this->hasMany('App\UsedLanguage', 'LanguagesID', 'ID');
+        return $this->hasMany('App\UsedLanguages', 'LanguagesID', 'ID');
     }
 
     /**
@@ -44,6 +44,6 @@ class Languages extends Model
      */
     public function wantedLanguages()
     {
-        return $this->hasMany('App\WantedLanguage', 'LanguagesID', 'ID');
+        return $this->hasMany('App\WantedLanguages', 'LanguagesID', 'ID');
     }
 }

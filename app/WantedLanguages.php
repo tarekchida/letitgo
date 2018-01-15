@@ -30,7 +30,7 @@ class WantedLanguages extends Model
      */
     public function language()
     {
-        return $this->belongsTo('App\Language', 'LanguagesID', 'ID');
+        return $this->belongsTo('App\Languages', 'LanguagesID', 'ID');
     }
 
     /**
@@ -38,6 +38,6 @@ class WantedLanguages extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User', 'UsersID', 'ID');
+        return $this->belongsTo('App\Users', 'UsersID', 'ID');
     }
 }

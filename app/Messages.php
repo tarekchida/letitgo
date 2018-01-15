@@ -52,7 +52,7 @@ class Messages extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User', 'UsersID', 'ID');
+        return $this->belongsTo('App\Users', 'UsersID', 'ID');
     }
 
     /**
@@ -60,7 +60,7 @@ class Messages extends Model
      */
     public function bookmarks()
     {
-        return $this->hasMany('App\Bookmark', 'MessagesID', 'ID');
+        return $this->hasMany('App\Bookmarks', 'MessagesID', 'ID');
     }
 
     /**
@@ -68,7 +68,7 @@ class Messages extends Model
      */
     public function disLikes()
     {
-        return $this->hasMany('App\DisLike', 'MessagesID', 'ID');
+        return $this->hasMany('App\DisLikes', 'MessagesID', 'ID');
     }
 
     /**
@@ -76,7 +76,7 @@ class Messages extends Model
      */
     public function likes()
     {
-        return $this->hasMany('App\Like', 'MessagesID', 'ID');
+        return $this->hasMany('App\Likes', 'MessagesID', 'ID');
     }
 
     /**

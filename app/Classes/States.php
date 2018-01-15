@@ -6,7 +6,7 @@ namespace App\Classes;
  * @access public
  * @author Tarek.Chida
  */
-class Countries {
+class States {
 
     /**
      * @AttributeType int
@@ -21,21 +21,17 @@ class Countries {
     /**
      * @AttributeType int
      */
-    private $code;
+    private $countriesID;
 
     /**
-     * @AssociationType Cities
-     * @AssociationMultiplicity *
+     * @access public
      */
-    public $states = array();
-
-    function __construct($iD, $name, $code, $states) {
+ 
+    function __construct($iD, $name, $countriesID) {
         $this->iD = $iD;
         $this->name = $name;
-        $this->code = $code;
-        $this->states = $states;
+        $this->countriesID = $countriesID;
     }
-
     function getID() {
         return $this->iD;
     }
@@ -44,14 +40,10 @@ class Countries {
         return $this->name;
     }
 
-    function getCode() {
-        return $this->code;
+    function getCountriesID() {
+        return $this->countriesID;
     }
-
-    function getStates() {
-        return $this->states;
-    }
-
+ 
 }
 
 ?>

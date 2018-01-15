@@ -30,7 +30,7 @@ class Likes extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User', 'UsersID', 'ID');
+        return $this->belongsTo('App\Users', 'UsersID', 'ID');
     }
 
     /**
@@ -38,6 +38,6 @@ class Likes extends Model
      */
     public function message()
     {
-        return $this->belongsTo('App\Message', 'MessagesID', 'ID');
+        return $this->belongsTo('App\Messages', 'MessagesID', 'ID');
     }
 }

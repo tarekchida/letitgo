@@ -35,9 +35,9 @@ class Countries extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function cities()
+    public function states()
     {
-        return $this->hasMany('App\City', 'CountriesID', 'ID');
+        return $this->hasMany('App\States', 'StatesID', 'ID');
     }
 
     /**
@@ -45,6 +45,6 @@ class Countries extends Model
      */
     public function users()
     {
-        return $this->hasMany('App\User', 'CountriesID', 'ID');
+        return $this->hasMany('App\Users', 'CountriesID', 'ID');
     }
 }

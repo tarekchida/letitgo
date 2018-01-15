@@ -12,14 +12,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property Country $country
  * @property User[] $users
  */
-class Cities extends Model
-{
+class States extends Model {
+
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'Cities';
+    protected $table = 'States';
 
     /**
      * The primary key for the model.
@@ -31,21 +31,20 @@ class Cities extends Model
     /**
      * @var array
      */
-    protected $fillable = ['Name', 'CitiesID', 'Code'];
+    protected $fillable = ['Name', 'StatesID', 'Code'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function state()
-    {
-        return $this->belongsTo('App\States', 'StatesID', 'ID');
+    public function cities() {
+        return $this->hasMany('App\Cities', 'StatesID', 'ID');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function users()
-    {
-        return $this->hasMany('App\Users', 'CitiesID', 'ID');
+    public function countries() {
+        return $this->belongsTo('App\Countries', 'CountriesID', 'ID');
     }
+
 }

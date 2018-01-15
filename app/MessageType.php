@@ -35,6 +35,6 @@ class MessageType extends Model
      */
     public function messages()
     {
-        return $this->hasMany('App\Message', 'MessageTypeID', 'ID');
+        return $this->hasMany('App\Messages', 'MessageTypeID', 'ID');
     }
 }

@@ -59,42 +59,42 @@ class Users extends Model {
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function city() {
-        return $this->belongsTo('App\City', 'CitiesID', 'ID');
+        return $this->belongsTo('App\Cities', 'CitiesID', 'ID');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function country() {
-        return $this->belongsTo('App\Country', 'CountriesID', 'ID');
+        return $this->belongsTo('App\Countries', 'CountriesID', 'ID');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function bookmarks() {
-        return $this->hasMany('App\Bookmark', 'UsersID', 'ID');
+        return $this->hasMany('App\Bookmarks', 'UsersID', 'ID');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function disLikes() {
-        return $this->hasMany('App\DisLike', 'UsersID', 'ID');
+        return $this->hasMany('App\DisLikes', 'UsersID', 'ID');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function likes() {
-        return $this->hasMany('App\Like', 'UsersID', 'ID');
+        return $this->hasMany('App\Likes', 'UsersID', 'ID');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function messages() {
-        return $this->hasMany('App\Message', 'UsersID', 'ID');
+        return $this->hasMany('App\Messages', 'UsersID', 'ID');
     }
 
     /**
@@ -108,7 +108,7 @@ class Users extends Model {
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function usedLanguages() {
-        return $this->hasMany('App\UsedLanguage', 'UsersID', 'ID');
+        return $this->hasMany('App\UsedLanguages', 'UsersID', 'ID');
     }
 
     /**
@@ -122,7 +122,7 @@ class Users extends Model {
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function wantedLanguages() {
-        return $this->hasMany('App\WantedLanguage', 'UsersID', 'ID');
+        return $this->hasMany('App\WantedLanguages', 'UsersID', 'ID');
     }
 
 }
