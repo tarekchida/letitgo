@@ -13,7 +13,7 @@ use App\Countries;
 use App\States;
 use Auth;
 
-class CountriesAndCitiesApi extends Controller {
+class ApiLocationController extends Controller {
 
     public function __construct() {
         $this->middleware('auth');

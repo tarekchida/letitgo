@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Users;
 
-class UsersController extends Controller {
+class ApiUsersController extends Controller {
 
     /**
      * Constructor
@@ -40,7 +40,7 @@ class UsersController extends Controller {
             return response()->json(['status' => 'success', 'api_key' => $apikey]);
         } else {
 
-            return response()->json(['status' => 'fail'], 401);
+            return response('Authetification Fail', API_UNAUTHORIZED);
         }
     }
 

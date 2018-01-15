@@ -12,6 +12,7 @@ try {
  * DEFINE CONT VARS
  */
 define('API_NOT_FOUND', 400);
+define('API_UNAUTHORIZED', 401);
 
 
 /*
@@ -69,9 +70,9 @@ $app->singleton(
 // $app->middleware([
 //    App\Http\Middleware\ExampleMiddleware::class
 // ]);
- $app->routeMiddleware([
-      'auth' => App\Http\Middleware\Authenticate::class,
- ]);
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\Authenticate::class,
+]);
 
 /*
   |--------------------------------------------------------------------------
