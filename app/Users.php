@@ -52,8 +52,8 @@ class Users extends Model implements Authenticatable {
     /**
      * @var array
      */
-    protected $fillable = ['FirstName', 'LastName', 'Email', 'UserName', 'Password', 'BirthDate', 'LastConnectionDate', 'CreationDate', 'Avatar', 'CitiesID', 'CountriesID', 'apiKey'];
-    protected $hidden = [ 'Password'];
+    protected $fillable = ['FirstName', 'LastName', 'Email', 'UserName', 'Password', 'BirthDate', 'Avatar', 'CitiesID', 'CountriesID', 'apiKey'];
+    protected $hidden = [ 'Password', 'LastConnectionDate', 'CreationDate',];
 
     /**
      *
