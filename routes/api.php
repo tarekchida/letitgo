@@ -22,7 +22,7 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api/'], function ($router) {
 
-    $router->get('/user/login', 'ApiUsersController@authenticate');
+    $router->POST('/user/login', 'ApiUsersController@authenticate');
 
     /**
      * POST firstStepPost
