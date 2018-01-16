@@ -8,28 +8,73 @@
   "host" : "th.dev",
   "basePath" : "/api",
   "tags" : [ {
-    "name" : "Registration",
-    "description" : "Manage user registration"
+    "name" : "Users",
+    "description" : "Manage users"
   }, {
-    "name" : "countries, states & cities",
+    "name" : "Locations manager",
     "description" : "Get countries, states and cities lists"
   } ],
   "schemes" : [ "https", "http" ],
   "consumes" : [ "application/json" ],
   "produces" : [ "application/json" ],
   "paths" : {
-    "/first-step" : {
+    "/user/login" : {
       "post" : {
-        "tags" : [ "Registration" ],
+        "tags" : [ "Users" ],
+        "summary" : "Logs user into the system",
+        "operationId" : "loginUser",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "The email/password",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/userLogin"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "400" : {
+            "description" : "Invalid username/password supplied"
+          }
+        }
+      }
+    },
+    "/user/logout" : {
+      "get" : {
+        "tags" : [ "Users" ],
+        "summary" : "Logs out current logged in user session",
+        "operationId" : "logoutUser",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
+      }
+    },
+    "/user/first-step" : {
+      "post" : {
+        "tags" : [ "Users" ],
         "summary" : "User first step",
-        "description" : "User first step",
+        "operationId" : "UserFirstStep",
         "parameters" : [ {
           "in" : "body",
           "name" : "email",
           "description" : "User email",
           "required" : false,
           "schema" : {
-            "$ref" : "#/definitions/firstStepRequest"
+            "$ref" : "#/definitions/userFirstStepRequest"
           }
         } ],
         "responses" : {
@@ -42,17 +87,17 @@
           "400" : {
             "description" : "Bad Request"
           },
-          "401" : {
+          "402" : {
             "description" : "User already exists"
           }
         }
       }
     },
-    "/registration" : {
+    "/user/registration" : {
       "post" : {
-        "tags" : [ "Registration" ],
+        "tags" : [ "Users" ],
         "summary" : "User registration",
-        "description" : "User registration",
+        "operationId" : "UserRegister",
         "parameters" : [ {
           "in" : "body",
           "name" : "user",
@@ -75,11 +120,11 @@
         }
       }
     },
-    "/countries" : {
+    "/get-countries" : {
       "get" : {
-        "tags" : [ "countries, states & cities" ],
+        "tags" : [ "Locations manager" ],
         "summary" : "Get countries list",
-        "description" : "Get countries list",
+        "operationId" : "getCountriesList",
         "parameters" : [ ],
         "responses" : {
           "200" : {
@@ -91,14 +136,17 @@
           "400" : {
             "description" : "Bad Request"
           }
-        }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
       }
     },
-    "/countries/{id}" : {
+    "/get-countries/{id}" : {
       "get" : {
-        "tags" : [ "countries, states & cities" ],
+        "tags" : [ "Locations manager" ],
         "summary" : "Get states list by country id",
-        "description" : "Get states list by country id",
+        "operationId" : "getCountryStates",
         "parameters" : [ {
           "name" : "id",
           "in" : "path",
@@ -116,14 +164,17 @@
           "400" : {
             "description" : "Country not found"
           }
-        }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
       }
     },
-    "/states/{id}" : {
+    "/get-states/{id}" : {
       "get" : {
-        "tags" : [ "countries, states & cities" ],
+        "tags" : [ "Locations manager" ],
         "summary" : "Get cities list by state id",
-        "description" : "Get cities list by state id",
+        "operationId" : "getStatesCities",
         "parameters" : [ {
           "name" : "id",
           "in" : "path",
@@ -141,12 +192,36 @@
           "400" : {
             "description" : "Country not found"
           }
-        }
+        },
+        "security" : [ {
+          "Bearer" : [ ]
+        } ]
       }
     }
   },
+  "securityDefinitions" : {
+    "Bearer" : {
+      "description" : "For accessing the API a valid JWT token must be passed in all the queries in\nthe 'Authorization' header.\n\n\nA valid JWT token is generated by the API and retourned as answer of a call\nto the route /login giving a valid user & password.\n\n\nThe following syntax must be used in the 'Authorization' header :\n\n    Bearer: xxxxxx.yyyyyyy.zzzzzz\n",
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    }
+  },
   "definitions" : {
-    "firstStepRequest" : {
+    "userLogin" : {
+      "type" : "object",
+      "properties" : {
+        "email" : {
+          "type" : "string",
+          "description" : "User email"
+        },
+        "password" : {
+          "type" : "string",
+          "description" : "User email"
+        }
+      }
+    },
+    "userFirstStepRequest" : {
       "type" : "object",
       "properties" : {
         "email" : {
@@ -155,7 +230,7 @@
         }
       }
     },
-    "firstStepResponse" : {
+    "userFirstStepResponse" : {
       "type" : "object",
       "properties" : {
         "email" : {
@@ -361,7 +436,7 @@
     "inline_response_200" : {
       "properties" : {
         "data" : {
-          "$ref" : "#/definitions/firstStepResponse"
+          "$ref" : "#/definitions/userFirstStepResponse"
         }
       },
       "example" : {
