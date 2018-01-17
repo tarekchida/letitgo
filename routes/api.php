@@ -22,42 +22,42 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api/'], function ($router) {
 
-    $router->POST('/user/login', 'ApiUsersController@authenticate');
-
+    $router->POST('/user/login', 'ApiUsersController@login');
+    $router->GET('/user/logout', 'ApiUsersController@logout');
     /**
      * POST firstStepPost
      * Summary: User first step
      * Notes: User first step
      * Output-Formats: [application/json]
      */
-    $router->POST('/first-step', 'RegistrationApi@firstStepPost');
+    $router->POST('/user/first-step', 'RegistrationApi@firstStepPost');
     /**
      * POST registrationPost
      * Summary: User registration
      * Notes: User registration
      * Output-Formats: [application/json]
      */
-    $router->POST('/registration', 'RegistrationApi@registrationPost');
+    $router->POST('/user/registration', 'RegistrationApi@registrationPost');
     /**
      * GET countriesGet
      * Summary: Get countries list
      * Notes: Get countries list
      * Output-Formats: [application/json]
      */
-    $router->GET('/countries', 'ApiLocationController@countriesGet');
+    $router->GET('/get-countries', 'ApiLocationController@countriesGet');
     /**
      * GET countriesIdGet
      * Summary: Get states list by country id
      * Notes: Get states list by country id
      * Output-Formats: [application/json]
      */
-    $router->GET('/countries/{id}', 'ApiLocationController@countriesIdGet');
+    $router->GET('/get-countries/{id}', 'ApiLocationController@countriesIdGet');
     /**
      * GET statesIdGet
      * Summary: Get cities list by state id
      * Notes: Get cities list by state id
      * Output-Formats: [application/json]
      */
-    $router->GET('/states/{id}', 'ApiLocationController@statesIdGet');
+    $router->GET('/get-states/{id}', 'ApiLocationController@statesIdGet');
 });
 
