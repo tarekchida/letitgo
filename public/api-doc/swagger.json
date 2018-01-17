@@ -14,7 +14,7 @@
     "name" : "Locations manager",
     "description" : "Get countries, states and cities lists"
   } ],
-  "schemes" : [ "https", "http" ],
+  "schemes" : [ "http" ],
   "consumes" : [ "application/json" ],
   "produces" : [ "application/json" ],
   "paths" : {
@@ -63,6 +63,62 @@
         } ]
       }
     },
+    "/user/password/forget" : {
+      "post" : {
+        "tags" : [ "Users" ],
+        "summary" : "Logs user into the system",
+        "operationId" : "passwordForget",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "email",
+          "description" : "User email",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/userEmail"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "400" : {
+            "description" : "Invalid email supplied"
+          }
+        }
+      }
+    },
+    "/user/password/reset" : {
+      "post" : {
+        "tags" : [ "Users" ],
+        "summary" : "Logs user into the system",
+        "operationId" : "passwordReset",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "email",
+          "description" : "User email",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/resetPassword"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "400" : {
+            "description" : "Invalid email supplied"
+          }
+        }
+      }
+    },
     "/user/first-step" : {
       "post" : {
         "tags" : [ "Users" ],
@@ -74,7 +130,7 @@
           "description" : "User email",
           "required" : false,
           "schema" : {
-            "$ref" : "#/definitions/userFirstStepRequest"
+            "$ref" : "#/definitions/userEmail"
           }
         } ],
         "responses" : {
@@ -221,12 +277,33 @@
         }
       }
     },
-    "userFirstStepRequest" : {
+    "userEmail" : {
       "type" : "object",
       "properties" : {
         "email" : {
           "type" : "string",
           "description" : "User email"
+        }
+      }
+    },
+    "resetPassword" : {
+      "type" : "object",
+      "properties" : {
+        "email" : {
+          "type" : "string",
+          "description" : "User email"
+        },
+        "password" : {
+          "type" : "string",
+          "description" : "User password"
+        },
+        "confirmPassword" : {
+          "type" : "string",
+          "description" : "User password confirmation"
+        },
+        "token" : {
+          "type" : "string",
+          "description" : "reset token"
         }
       }
     },

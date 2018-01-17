@@ -5,7 +5,7 @@
  * ThrowIt Api 
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +14,7 @@ use Illuminate\Http\Response;
 use App\Users;
 use Symfony\Component\HttpFoundation\Cookie;
 
-class ApiUsersController extends Controller {
+class LoginController extends Controller {
 
     /**
      * Constructor
@@ -39,50 +39,12 @@ class ApiUsersController extends Controller {
 
             Users::where('Email', $request->input('email'))->update(['api_key' => $apikey, 'LastConnectionDate' => now()]);
             $response = new Response();
-            $cookie = new Cookie("connect.sid", $apikey);
+            $cookie = new Cookie("connect.sid", $apikey, strtotime("+2 hours"));
 
             return response()->json(['status' => 'success', 'api_key' => $apikey])->withCookie($cookie);
         } else {
             return response('Authetification Fail', API_UNAUTHORIZED);
         }
-    }
-
-    /**
-     * Operation firstStepPost
-     *
-     * User first step.
-     *
-     *
-     * @return Http response
-     */
-    public function firstStepPost() {
-        $input = Request::all();
-
-        //path params validation
-        //not path params validation
-        $email = $input['email'];
-
-
-        return response('How about implementing firstStepPost as a POST method ?');
-    }
-
-    /**
-     * Operation registrationPost
-     *
-     * User registration.
-     *
-     *
-     * @return Http response
-     */
-    public function registrationPost() {
-        $input = Request::all();
-
-        //path params validation
-        //not path params validation
-        $user = $input['user'];
-
-
-        return response('How about implementing registrationPost as a POST method ?');
     }
 
 }
