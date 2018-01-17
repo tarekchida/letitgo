@@ -17,7 +17,7 @@
  * @version 1.0.0
  */
 $router->get('/', function () use ($router) {
-    return $router->version();
+    return view('welcome');
 });
 
 $router->group(['prefix' => 'api/'], function ($router) {
