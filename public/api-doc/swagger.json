@@ -297,7 +297,7 @@
           "type" : "string",
           "description" : "User password"
         },
-        "confirmPassword" : {
+        "password_confirmation" : {
           "type" : "string",
           "description" : "User password confirmation"
         },
