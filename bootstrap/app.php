@@ -34,8 +34,9 @@ $app->instance('path.config', app()->basePath() . DIRECTORY_SEPARATOR . 'config'
 $app->instance('path.storage', app()->basePath() . DIRECTORY_SEPARATOR . 'storage');
 
 $app->withFacades();
-
 $app->withEloquent();
+$app->configure('mail');
+$app->configure('services');
 
 /*
   |--------------------------------------------------------------------------
@@ -87,6 +88,8 @@ $app->routeMiddleware([
 
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(\Illuminate\Mail\MailServiceProvider::class);
+
 // $app->register(App\Providers\EventServiceProvider::class); 
 
 /*
